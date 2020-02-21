@@ -28,7 +28,7 @@ const Header = () => (
             <HeaderItem>HIM</HeaderItem>
             <HeaderItem>THE WEDDING</HeaderItem>
         </StyledHeader>
-        <Image imageSrc={logo} altText="Logo" />
+        <Image imageSrc={logo} altText="Logo" hasMargin />
         <StyledHeader>
             <HeaderItem>360 PLANNER</HeaderItem>
             <HeaderItem>HER</HeaderItem>
