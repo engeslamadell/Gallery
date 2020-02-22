@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from '../components/ui/Header';
 import HomePage from '../components/pages/HomePage';
+import CategoriesPage from '../components/pages/CategoriesPage';
 import NotFoundPage from '../components/pages/NotFoundPage';
 
 const StyledApp = styled.div`
@@ -16,6 +17,7 @@ const AppRouter = () => (
             <Header />
             <Switch>
                 <Route path="/" component={HomePage} exact />
+                <Route path="/categories" component={CategoriesPage} />
                 <Route component={NotFoundPage} />
             </Switch>
         </StyledApp>
