@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from '../components/ui/Header';
+import Footer from '../components/ui/Footer';
 import HomePage from '../components/pages/HomePage';
 import CategoriesPage from '../components/pages/CategoriesPage';
 import NotFoundPage from '../components/pages/NotFoundPage';
@@ -21,6 +22,7 @@ const AppRouter = () => (
                 <Route component={NotFoundPage} />
             </Switch>
         </StyledApp>
+        <Footer />
     </BrowserRouter>
 )
 

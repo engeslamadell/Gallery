@@ -42,7 +42,9 @@ const Header = () => (
                 <StyledLink to="categories">THE WEDDING</StyledLink>
             </HeaderItem>
         </StyledHeader>
-        <Image imageSrc={logo} altText="Logo" hasMargin />
+        <StyledLink to="/">
+            <Image imageSrc={logo} altText="Logo" hasMargin />
+        </StyledLink>
         <StyledHeader>
             <HeaderItem>
                 <StyledLink to="categories">VENDORS</StyledLink>
