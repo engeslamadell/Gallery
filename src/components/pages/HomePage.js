@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 // new
 import { useDispatch, useSelector } from "react-redux";
@@ -19,6 +19,7 @@ import icon3 from '../../assets/icons/icon3.png';
 import icon4 from '../../assets/icons/icon4.png';
 import icon5 from '../../assets/icons/icon5.png';
 import icon6 from '../../assets/icons/icon6.png';
+import Pagination from '../ui/Pagination';
 
 const AboutWeds = styled.div`
   width: 80%;
@@ -47,6 +48,9 @@ const SideSectionContainer = styled.div`
 `;
 
 const HomePage = () => {
+  const [ currentPage, setCurrentPage ] = useState(1);
+  const [ imagePerPage ] = useState(9);
+
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -58,6 +62,12 @@ const HomePage = () => {
     getData();
   }, [dispatch]);
 
+  const indexofLastImage = currentPage * imagePerPage;
+  const indexOfFirstImage = indexofLastImage - imagePerPage;
+  const currentImages = state.slice(indexOfFirstImage, indexofLastImage);
+  
+  const paginate = (pageNumber) => setCurrentPage(pageNumber)
+
   return (
     <div>
       <ContentContainer>
@@ -67,7 +77,7 @@ const HomePage = () => {
           <TextInput />
         </SideSectionContainer>
         <CardContainer>
-          { state.map(item => (
+          { currentImages.map(item => (
             <Card key={item.id}>
               <Image imageSrc={item.photoPath} isFullWidth imageHeight="100%"/>
               <CardTitle>{item.title}</CardTitle>
@@ -75,6 +85,7 @@ const HomePage = () => {
           )) }
         </CardContainer>
       </ContentContainer>
+      <Pagination imagesPerPage={imagePerPage} totalImages={state.length} paginate={paginate} />
       <Heading isCenter isMainHeading>Wedding Planning Is a peice of cake with weds360. We know what matters most and you can count on us every step of your way.</Heading>
       <AboutWeds>
         <ServicesCard>

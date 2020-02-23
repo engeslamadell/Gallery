@@ -19,6 +19,7 @@ const AppRouter = () => (
             <Switch>
                 <Route path="/" component={HomePage} exact />
                 <Route path="/categories" component={CategoriesPage} />
+                <Route path="/:id" component={HomePage} exact />
                 <Route component={NotFoundPage} />
             </Switch>
         </StyledApp>

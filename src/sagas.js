@@ -15,7 +15,6 @@ function* fetchData(action) {
         yield put(fetchDataAction(data));
         console.log('after');
     }catch(e) {
-        // yield put({type: 'FAILED', message: e.message});
         console.log(e.message);
     }
 }
