@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+// new
+import { useDispatch, useSelector } from "react-redux";
+import { requestData } from "../../actions";
 
 import Card from '../ui/Card';
 import CardTitle from '../ui/CardTitle';
@@ -9,7 +12,6 @@ import Button from '../ui/Button';
 import Heading from '../ui/Heading';
 import ServicesCard from '../ui/ServicesCard';
 import Paragraph from '../ui/Paragraph';
-import axios from '../../api/getData';
 
 import icon1 from '../../assets/icons/icon1.png';
 import icon2 from '../../assets/icons/icon2.png';
@@ -45,16 +47,16 @@ const SideSectionContainer = styled.div`
 `;
 
 const HomePage = () => {
-  const [data, setData] = useState([]);
+  const state = useSelector(state => state);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getData = async () => {
-      const result = await axios.get('http://localhost:3001/data');
-      setData(result.data);
+      await dispatch(requestData());
     }
 
     getData();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
@@ -65,7 +67,7 @@ const HomePage = () => {
           <TextInput />
         </SideSectionContainer>
         <CardContainer>
-          { data.map(item => (
+          { state.map(item => (
             <Card key={item.id}>
               <Image imageSrc={item.photoPath} isFullWidth imageHeight="100%"/>
               <CardTitle>{item.title}</CardTitle>
